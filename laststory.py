@@ -93,7 +93,9 @@ class Combat(object):
 		damageToDo = int(((strength * self.damageModifier) % (defence * self.defenceModifier) + 25))
 		debug("made it to this bit at least...", damageToDo)
 		
-		# Pass damageToDo directly to damageConfirmed
+		# damageConfirmed needs value of damage to be further modified
+		# or negated. Pass damageToDo directly to damageConfirmed rather
+		# than calling function again
 		self.damageConfirmed(damageToDo)
 		
 	def damageConfirmed(self, initialDamage):
