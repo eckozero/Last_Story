@@ -22,11 +22,12 @@ def debug(*args):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+# Test variables only
 accuracy = 25
 evasion = 12
 strength = 100
 defence = 80
-statuses = []
+statuses = ["poison", "fire", "strike"]
 
 class Combat(object):
 	""" Combat requires some shit to be calculated. It needs to:
@@ -57,6 +58,11 @@ class Combat(object):
 	
 	damageModifier = random.randint(1,4)
 	defenceModifier = random.randint(1,4)
+
+	# Once everything has been calculated, we need to know how much
+	# damage is actually being done to the bad guy (or the good guy)
+	actualDamageAmount = 0
+
 	
 	def __init__(self, accuracy, evasion, strength, defence, statuses):
 		self.accuracy = accuracy
@@ -99,17 +105,26 @@ class Combat(object):
 		self.damageConfirmed(damageToDo)
 		
 	def damageConfirmed(self, initialDamage):
-		self.initialDamage = initialDamage
 		""" Check for status modifications to weapons """
+		
+		self.initialDamage = initialDamage
 		# List of status modifications passed as argument. If length
 		# is 0, no status modifiers
 		# NB: statuses list may need to be a dictionary
-		if len(self.statuses) == 0:
+		if len(statuses) == 0:
 			debug(initialDamage, "and this little piggy")
-			#return initialDamage
-		#else:
-		#	for each in self.statuses:
-				
+			return initialDamage
+		else:
+			for each in statuses:
+		# Weapon/attack has some kind of status modifier. Pass each to
+		# the statusChange function to modify the value of variable
+		# actualDamageAmount
+				self.statusChange(each)
+				debug("attempt", each)
+	
+	def statusChange(self, status):
+		self.status = status
+		pass
 
 
 combatTrial = Combat(accuracy, evasion, strength, defence, statuses)
