@@ -6,19 +6,21 @@
 
 import random
 
- 
-# Below is for printing output for debugging. I might need to
-# legitimately use the 'print' command at some point, so using a 
-# 'debug' function lets me find and comment out very easily.
 
-# It looks pretty ugly when it prints out but it's quicker later on.
-
-# This is a lesson learnt hard from CLIc
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Below is for printing output for debugging. I might need to         #
+# legitimately use the 'print' command at some point, so using a      #
+# 'debug' function lets me find and comment out very easily.          #
+#                                                                     # 
+# It looks pretty ugly when it prints out but it's quicker later on.  #
+#                                                                     #
+# This is a lesson learnt hard from CLIc                              #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 def debug(*args):
 	print args
 
-
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 accuracy = 25
 evasion = 12
