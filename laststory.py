@@ -22,10 +22,10 @@
 #  
 #  
 
-# Last Story
-# Just a thing, where I have stolen some things from Final Fantasy
-# mostly around battling and the like. If I can be bothered, I might
-# make a small RPG-esque pygame for it
+#  Last Story
+#  Just a thing, where I have stolen some things from Final Fantasy
+#  mostly around battling and the like. If I can be bothered, I might
+#  make a small RPG-esque pygame for it
 
 import random
 
@@ -74,7 +74,7 @@ class Combat(object):
 
 	# Obtain a whole number between 1 and 10, divide by 10 to get a
 	# decimal between 0 and 1 - set data type as float to get the 
-	# decimal point for an always reductie division
+	# decimal point for an always reductive division
 	accuracyModifier = float(random.randint(1,10)) /10
 	evasionModifier = float(random.randint(1,10)) /10
 	
@@ -146,6 +146,9 @@ class Combat(object):
 				debug("attempt", each)
 	
 	def statusChange(self, status):
+		"""Check enemy type, then compare any statuses to list.
+		If there are no matches, break and return damageToBeDone as is.
+		If there are matches, modify damage accordingly. """
 		self.status = status
 		pass
 
@@ -160,4 +163,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
