@@ -26,6 +26,7 @@ accuracy = 25
 evasion = 12
 strength = 100
 defence = 80
+statuses = []
 
 class Combat(object):
 	""" Combat requires some shit to be calculated. It needs to:
@@ -57,19 +58,20 @@ class Combat(object):
 	damageModifier = random.randint(1,4)
 	defenceModifier = random.randint(1,4)
 	
-	def __init__(self, accuracy, evasion, strength, defence):
+	def __init__(self, accuracy, evasion, strength, defence, statuses):
 		self.accuracy = accuracy
 		self.evasion = evasion
 		self.strength = strength
 		self.defence = defence
+		self.statuses = statuses
 
 	def attackAttempted(self):
 		self.attackConnects()
 		
 	def attackConnects(self):
 		# Modify attack and evasion stats as per top comments
-		modifiedAcc = accuracy * accuracyModifier
-		modifiedEva = evasion * evasionModifier
+		modifiedAcc = accuracy * self.accuracyModifier
+		modifiedEva = evasion * self.evasionModifier
 		
 		# Check to see if attack hits. If evasion is higher than the
 		# accuracy of the attack, it misses, otherwise arguments are
@@ -90,8 +92,23 @@ class Combat(object):
 		# TODO: + 25 below to replaced by something more random
 		damageToDo = int(((strength * self.damageModifier) % (defence * self.defenceModifier) + 25))
 		debug("made it to this bit at least...", damageToDo)
+		
+		# Pass damageToDo directly to damageConfirmed
+		self.damageConfirmed(damageToDo)
+		
+	def damageConfirmed(self, initialDamage):
+		self.initialDamage = initialDamage
+		""" Check for status modifications to weapons """
+		# List of status modifications passed as argument. If length
+		# is 0, no status modifiers
+		# NB: statuses list may need to be a dictionary
+		if len(self.statuses) == 0:
+			debug(initialDamage, "and this little piggy")
+			#return initialDamage
+		#else:
+		#	for each in self.statuses:
+				
 
 
-	
-combatTrial = Combat(accuracy, evasion, strength, defence)
+combatTrial = Combat(accuracy, evasion, strength, defence, statuses)
 combatTrial.attackAttempted()
