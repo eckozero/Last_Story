@@ -157,11 +157,14 @@ class Combat(object):
 				debug("attempt", each)
 	
 	def statusChange(self, status):
-		"""Check enemy type, then compare any statuses to list.
-		If there are no matches, break and return damageToBeDone as is.
-		If there are matches, modify damage accordingly. """
+		"""Check enemy type, then compare any enemy statuses to 
+		dictionary. If there are no matches, break and return 
+		damageToBeDone as is. If there are matches, modify damage 
+		accordingly. """
 		self.status = status
 		if status in statusDict:
+			# Is attacking status effective against enemy? Checks
+			# attack status against enemy's status using the dictionary
 			debug("nailed it")
 			debug(statusDict[status])
 		pass
