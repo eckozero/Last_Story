@@ -45,12 +45,23 @@ def debug(*args):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+statusDict = {
+				"poison": "normal",
+				"fire": "earth",
+				"strike": "ground",
+				"water": "stone",
+			}
+
 # Test variables only
 accuracy = 25
 evasion = 12
 strength = 100
 defence = 80
 statuses = ["poison", "fire", "strike"]
+
+# Test enemy
+enemyStatuses = ["ground"]
+
 
 class Combat(object):
 	""" Combat requires some shit to be calculated. It needs to:
@@ -150,6 +161,9 @@ class Combat(object):
 		If there are no matches, break and return damageToBeDone as is.
 		If there are matches, modify damage accordingly. """
 		self.status = status
+		if status in statusDict:
+			debug("nailed it")
+			debug(statusDict[status])
 		pass
 
 
