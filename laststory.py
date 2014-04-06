@@ -107,6 +107,9 @@ class Combat(object):
 
 	def attackAttempted(self):
 		self.attackConnects()
+		# ?????
+		# Why is there a function defined that *just* calls a
+		# a different function? Please fix.
 		
 	def attackConnects(self):
 		# Modify attack and evasion stats as per top comments
